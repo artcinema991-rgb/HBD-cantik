@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Untuk Perempuanku — 20 Tahun</title>
+  <style>
+    :root {
+      --red: #e50914;
+      --dark: #080808;
+      --soft-dark: #141414;
+      --muted: #b3b3b3;
+      --gold: #f5c518;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: var(--dark);
+      color: white;
+      font-family: Arial, Helvetica, sans-serif;
+      overflow-x: hidden;
+    }
+
+    .navbar {
+      align-items: center;
+      background: linear-gradient(to bottom, rgba(0,0,0,.9), transparent);
+      display: flex;
+      justify-content: space-between;
+      left: 0;
+      padding: 22px 5%;
+      position: absolute;
+      right: 0;
+      top: 0;
+      z-index: 5;
+    }
+
+    .logo {
+      color: var(--red);
+      font-size: 30px;
+      font-weight: 900;
+      letter-spacing: -2px;
+    }
+
+    .profile {
+      align-items: center;
+      display: flex;
+      gap: 10px;
+      font-size: 14px;
+    }
+
+    .avatar {
+      align-items: center;
+      background: var(--red);
+      border-radius: 4px;
+      display: flex;
+      font-weight: bold;
+      height: 30px;
+      justify-content: center;
+      width: 30px;
+    }
+
+    .sound-button {
+      background: rgba(30, 30, 30, .8);
+      border: 1px solid #555;
+      border-radius: 50%;
+      bottom: 25px;
+      color: white;
+      cursor: pointer;
+      font-size: 20px;
+      height: 48px;
+      position: fixed;
+      right: 25px;
+      width: 48px;
+      z-index: 8;
+    }
+
+    .hero {
+      background:
+        linear-gradient(90deg, #080808 4%, rgba(8,8,8,.75) 35%, rgba(8,8,8,.15) 75%),
+        linear-gradient(0deg, #080808 2%, transparent 35%),
+        url("https://uploads.onecompiler.io/44z85gtar/1787657972184/foto%20utama.jpg") center/cover;
+      min-height: 650px;
+      padding: 190px 5% 100px;
+    }
+
+    .hero-content {
+      max-width: 590px;
+    }
+
+    .tag {
+      color: #ddd;
+      font-size: 14px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      margin-bottom: 18px;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      font-size: clamp(45px, 7vw, 88px);
+      line-height: .98;
+      margin-bottom: 20px;
+      text-shadow: 2px 3px 12px #000;
+    }
+
+    h1 span {
+      color: var(--red);
+    }
+
+    .description {
+      color: #e4e4e4;
+      font-size: 18px;
+      line-height: 1.6;
+      margin-bottom: 28px;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    button {
+      border: 0;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+      padding: 13px 24px;
+      transition: .2s;
+    }
+
+    button:hover {
+      opacity: .8;
+      transform: scale(1.03);
+    }
+
+    .play {
+      background: white;
+      color: black;
+    }
+
+    .more {
+      background: rgba(109,109,110,.7);
+      color: white;
+    }
+
+    section {
+      padding: 25px 5%;
+    }
+
+    .section-title {
+      font-size: 22px;
+      margin-bottom: 15px;
+    }
+
+    .cards {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: repeat(5, minmax(150px, 1fr));
+    }
+
+    .card {
+      background: var(--soft-dark);
+      border-radius: 5px;
+      cursor: pointer;
+      overflow: hidden;
+      position: relative;
+      transition: .3s;
+    }
+
+    .card:hover {
+      transform: scale(1.06);
+      z-index: 2;
+    }
+
+    .card img {
+      display: block;
+      height: 230px;
+      object-fit: cover;
+      width: 100%;
+    }
+
+    .card-info {
+      padding: 12px;
+    }
+
+    .card-info h3 {
+      font-size: 15px;
+      margin-bottom: 7px;
+    }
+
+    .card-info p {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .memory {
+      background: linear-gradient(135deg, #1c1c1c, #331015);
+      border-left: 4px solid var(--red);
+      border-radius: 6px;
+      line-height: 1.8;
+      margin: 30px 5%;
+      max-width: 900px;
+      padding: 30px;
+    }
+
+    .memory h2 {
+      color: var(--gold);
+      margin-bottom: 14px;
+    }
+
+    .memory p {
+      color: #eee;
+      font-size: 17px;
+    }
+
+    footer {
+      color: #777;
+      padding: 50px 5%;
+      text-align: center;
+    }
+
+    .modal {
+      align-items: center;
+      background: rgba(0,0,0,.85);
+      display: none;
+      inset: 0;
+      justify-content: center;
+      padding: 20px;
+      position: fixed;
+      z-index: 10;
+    }
+
+    .modal.show {
+      display: flex;
+    }
+
+    .modal-box {
+      background: #181818;
+      border-radius: 8px;
+      max-width: 520px;
+      padding: 35px;
+      position: relative;
+      text-align: center;
+    }
+
+    .modal-box h2 {
+      color: var(--red);
+      margin-bottom: 18px;
+    }
+
+    .modal-box p {
+      color: #eee;
+      font-size: 18px;
+      line-height: 1.7;
+    }
+
+    .close {
+      background: transparent;
+      color: white;
+      font-size: 24px;
+      padding: 4px 10px;
+      position: absolute;
+      right: 10px;
+      top: 8px;
+    }
+
+    @media (max-width: 800px) {
+      .cards {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .card img {
+        height: 210px;
+      }
+
+      .hero {
+        min-height: 620px;
+        padding-top: 170px;
+      }
+    }
+
+    @media (max-width: 450px) {
+      .profile span {
+        display: none;
+      }
+
+      .cards {
+        gap: 9px;
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .card img {
+        height: 170px;
+      }
+
+      .memory {
+        margin: 25px 5%;
+        padding: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <audio id="backgroundMusic" loop>
+    <source src="backssound.mp3" type="audio/mpeg" />
+    Browser tidak mendukung audio.
+  </audio>
+
+  <nav class="navbar">
+    <div class="logo">BIRTHDAYFLIX</div>
+    <div class="profile">
+      <span>UNTUK ORANG TERSAYANG</span>
+      <div class="avatar">🤍</div>
+    </div>
+  </nav>
+
+  <button class="sound-button" id="soundButton" onclick="toggleMusic()" title="Nyalakan atau matikan musik">
+    🔇
+  </button>
+
+  <header class="hero">
+    <div class="hero-content">
+      <div class="tag">Original Love Story • 25 08 2025 •</div>
+      <h1>Happy <span>20th</span><br />Sayang!</h1>
+      <p class="description">
+        Untuk Alif Agustina Putri Mayang Fauni, Perempuan terbaikku, yang selalu membuat
+        hari-hariku terasa lebih hidup, hangat, dan penuh warna. 
+
+      </p>
+      <div class="buttons">
+        <button class="play" onclick="showMessage(); startMusic()">▶ Putar Pesan</button>
+        <button class="more" onclick="document.querySelector('#kenangan').scrollIntoView({behavior:'smooth'}); startMusic()">
+          ⓘ Lihat Kenangan
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="kenangan">
+      <h2 class="section-title">Kenangan Favorit Kita</h2>
+      <div class="cards">
+        <article class="card">
+          <img src="https://uploads.onecompiler.io/44z85gtar/1787659336695/33623.JPG" alt="Kenangan pertama" />
+          <div class="card-info">
+            <h3>Awal Cerita Kita</h3>
+            <p>Episode 01 • Momen pertama</p>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="https://uploads.onecompiler.io/44z85gtar/1787659739788/IMG_6132.JPG" alt="Momen romantis" />
+          <div class="card-info">
+            <h3>Senyum Favoritku</h3>
+            <p>Episode 02 • Selalu kamu</p>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="https://uploads.onecompiler.io/44z85gtar/1787657996860/foto%204.jpg" alt="Perjalanan bersama" />
+          <div class="card-info">
+            <h3>Petualangan Kecil</h3>
+            <p>Episode 03 • Bersama kamu</p>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="https://uploads.onecompiler.io/44z85gtar/1787659091816/133287.JPG" alt="Momen bahagia" />
+          <div class="card-info">
+            <h3>Hari Paling Bahagia</h3>
+            <p>Episode 04 • Tawa kita</p>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="https://uploads.onecompiler.io/44z85gtar/1787659222434/IMG_5881.JPG" alt="Masa depan bersama" />
+          <div class="card-info">
+            <h3>To Be Continued...</h3>
+            <p>Episode 05 • Selamanya</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <div class="memory">
+      <h2>♡ Sebuah Surat Untuk Perempuanku</h2>
+      <p>
+        Selamat ulang tahun yang ke-20, sayangku. Selamat menjadi manusia dewasa, kalau ada masalah cerita ke aku ya,
+        aku siap mendengarkan dan memberikan sandaran bahu untuk kamu bersandar. Tetap menjadi perempuanku yang kuat dan banyak sabar ya.
+        Aku ucapkan Terima kasih sudah hadir dan menjadi bagian terindah dalam hidupku, dan selalu sabar menemani prosesku yang sangat sulit ini. 
+        Di antara banyaknya orang di dunia,
+        aku sangat bersyukur bisa menemukanmu. 
+      </p>
+      <br />
+      <p>
+        Semoga di usia yang baru ini semua impianmu perlahan menjadi nyata.
+        Jangan pernah lupa bahwa aku akan selalu mendukungmu, menemanimu,
+        dan menyayangimu dalam setiap keadaan. Kamu adalah rumah yang selalu
+        ingin aku kunjungi. I love you, Sayang. Hari ini, besok, dan selamanya.
+      </p>
+    </div>
+  </main>
+
+  <footer>
+    Dibuat dengan penuh cinta khusus untuk Alif Agustina Putri Mayang Fauni ♡
+  </footer>
+
+  <div class="modal" id="messageModal" onclick="closeOutside(event)">
+    <div class="modal-box">
+      <button class="close" onclick="hideMessage()">×</button>
+      <h2>Pesan Spesial Untukmu ♡</h2>
+      <p>
+        Selamat ulang tahun ke-20, Perempuanku! Semoga senyummu selalu menjadi hal
+        terindah yang kulihat setiap hari. Terimakasih sudah mempunyai sabar yang seluas samudra.
+        Aku mencintaimu lebih dari kata-kata yang bisa kuucapkan.
+      </p>
+    </div>
+  </div>
+
+  <script>
+    const modal = document.getElementById("messageModal");
+    const music = document.getElementById("backgroundMusic");
+    const soundButton = document.getElementById("soundButton");
+
+    function startMusic() {
+      music.play()
+        .then(() => {
+          soundButton.textContent = "🔊";
+        })
+        .catch(() => {
+          soundButton.textContent = "🔇";
+        });
+    }
+
+    function toggleMusic() {
+      if (music.paused) {
+        startMusic();
+      } else {
+        music.pause();
+        soundButton.textContent = "🔇";
+      }
+    }
+
+    function showMessage() {
+      modal.classList.add("show");
+    }
+
+    function hideMessage() {
+      modal.classList.remove("show");
+    }
+
+    function closeOutside(event) {
+      if (event.target === modal) hideMessage();
+    }
+
+    document.addEventListener("click", startMusic, { once: true });
+  </script>
+</body>
+</html>
